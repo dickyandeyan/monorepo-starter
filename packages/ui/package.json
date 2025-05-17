@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "exports": {
     "./components/*": "./src/components/ui/*.tsx",
+    "./forms/*": "./src/components/forms/*.tsx",
     "./lib/utils": "./src/lib/utils.ts",
     "./hooks/*": "./src/hooks/*.ts"
   },

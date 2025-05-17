@@ -1,7 +1,5 @@
-import { useState } from 'react'
-
+import { useQuery } from '@repo/react-query'
 import { Button } from '@repo/ui/components/button'
-import { Input } from '@repo/ui/components/input'
 import { Calendar } from '@repo/ui/components/calendar'
 import {
   Card,
@@ -10,7 +8,33 @@ import {
   CardHeader,
   CardTitle,
 } from '@repo/ui/components/card'
-import { useQuery } from '@repo/react-query'
+import { Form } from '@repo/ui/components/form'
+import { Input } from '@repo/ui/components/input'
+import InputField from '@repo/ui/forms/input-field'
+import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+
+function FormExample() {
+  const form = useForm()
+
+  const onSubmit = (data: any) => {
+    console.log(data)
+  }
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <InputField
+          control={form.control}
+          name="id"
+          placeholder="Text"
+          label="Doms"
+        />
+        <Button type="submit">Submit</Button>
+      </form>
+    </Form>
+  )
+}
 
 export default function App() {
   const [count, setCount] = useState(0)
@@ -33,7 +57,7 @@ export default function App() {
   if (error) return <div>Error: {error.message}</div>
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex w-full flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="flex flex-col items-center justify-center space-y-4">
         <Card className="w-full max-w-md">
           <CardHeader>
@@ -51,8 +75,9 @@ export default function App() {
           mode="single"
           selected={date}
           onSelect={setDate}
-          className="rounded-md border shadow"
+          className="rounded-md border shado bg-white"
         />
+        <FormExample />
         <Button
           onClick={() => setCount((count) => count + 1)}
           variant="default"
